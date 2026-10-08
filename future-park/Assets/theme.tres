@@ -1,0 +1,6 @@
+[gd_resource type="Theme" format=3 uid="uid://ibv4s7ew124a"]
+
+[ext_resource type="FontFile" uid="uid://cah0yh7alwul1" path="res://Assets/editundo.ttf" id="1_0dftj"]
+
+[resource]
+Label/fonts/font = ExtResource("1_0dftj")

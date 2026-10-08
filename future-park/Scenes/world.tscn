@@ -1,0 +1,156 @@
+[gd_scene format=3 uid="uid://c5tg71i83ac2y"]
+
+[ext_resource type="PackedScene" uid="uid://cdvxkpq4fp2li" path="res://Scenes/player.tscn" id="1_a02cp"]
+[ext_resource type="Texture2D" uid="uid://rvq7ji560rh3" path="res://Assets/map.png" id="1_go701"]
+[ext_resource type="Script" uid="uid://d180p0vi51aiv" path="res://Scripts/portal_1.gd" id="3_fo5ed"]
+[ext_resource type="Texture2D" uid="uid://d00n6n4q8h27x" path="res://Assets/TP v2.png" id="4_5ukr8"]
+[ext_resource type="Theme" uid="uid://ibv4s7ew124a" path="res://Assets/theme.tres" id="5_5ukr8"]
+[ext_resource type="Texture2D" uid="uid://cpvobr24oacq8" path="res://Assets/TP v3.png" id="5_o06y3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_obyia"]
+size = Vector2(131, 103)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5a7ea"]
+size = Vector2(23.5, 199.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8j60k"]
+size = Vector2(300, 71.75)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fo5ed"]
+size = Vector2(131, 142.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5ukr8"]
+size = Vector2(238.5, 38.25)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o06y3"]
+size = Vector2(35, 258)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k7acu"]
+size = Vector2(185.5, 169)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8xold"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_5ukr8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_o06y3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_5ukr8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_o06y3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_5ukr8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_o06y3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_5ukr8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_o06y3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_5ukr8")
+}],
+"loop": 0,
+"name": &"active",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_o06y3")
+}],
+"loop": 0,
+"name": &"detect",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_5ukr8")
+}],
+"loop": 0,
+"name": &"idle",
+"speed": 1.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8xold"]
+radius = 44.0
+height = 130.00003
+
+[node name="Node2D" type="Node2D" unique_id=1996505548]
+
+[node name="ground" type="StaticBody2D" parent="." unique_id=1953332313]
+scale = Vector2(4, 4)
+
+[node name="ColorRect" type="ColorRect" parent="ground" unique_id=836489433]
+offset_left = -521.75
+offset_top = -421.75
+offset_right = 633.75
+offset_bottom = 341.5
+color = Color(0.58431375, 0.8509804, 0.50980395, 1)
+
+[node name="Map" type="Sprite2D" parent="ground" unique_id=857846926]
+texture = ExtResource("1_go701")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ground" unique_id=1858949599]
+position = Vector2(-197, 38)
+shape = SubResource("RectangleShape2D_obyia")
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="ground" unique_id=1384895607]
+position = Vector2(-238, -97)
+shape = SubResource("RectangleShape2D_5a7ea")
+
+[node name="CollisionShape2D7" type="CollisionShape2D" parent="ground" unique_id=824491161]
+position = Vector2(-93, -221)
+shape = SubResource("RectangleShape2D_8j60k")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="ground" unique_id=1205882780]
+position = Vector2(-68.5, 137.75)
+shape = SubResource("RectangleShape2D_fo5ed")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="ground" unique_id=301457843]
+position = Vector2(107.75, 212.875)
+shape = SubResource("RectangleShape2D_5ukr8")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="ground" unique_id=2097919667]
+position = Vector2(244.5, 95)
+shape = SubResource("RectangleShape2D_o06y3")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="ground" unique_id=1538455642]
+position = Vector2(144, -110.5)
+shape = SubResource("RectangleShape2D_k7acu")
+
+[node name="portal1" type="Area2D" parent="." unique_id=2109689652]
+position = Vector2(-200, -200)
+scale = Vector2(1.525, 1.525)
+script = ExtResource("3_fo5ed")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="portal1" unique_id=294776385]
+position = Vector2(287, 511)
+sprite_frames = SubResource("SpriteFrames_8xold")
+animation = &"detect"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="portal1" unique_id=314396300]
+position = Vector2(285, 506)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_8xold")
+
+[node name="info" type="Label" parent="portal1" unique_id=457834941]
+anchors_preset = -1
+offset_left = 229.0
+offset_top = 589.0
+offset_right = 334.0
+offset_bottom = 612.0
+theme = ExtResource("5_5ukr8")
+text = "T to teleport"
+
+[node name="CharacterBody2D" parent="." unique_id=1126898047 instance=ExtResource("1_a02cp")]
+position = Vector2(599, 333)
+
+[node name="Camera2D" type="Camera2D" parent="CharacterBody2D" unique_id=1618545533]
