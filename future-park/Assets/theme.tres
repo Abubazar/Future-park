@@ -9,11 +9,12 @@ bg_color = Color(0.6, 0.6, 0.6, 0)
 bg_color = Color(0.1750271, 0.68751127, 0.6239543, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uhy15"]
+bg_color = Color(0.3372549, 0.3372549, 0.3372549, 1)
 border_width_left = 4
 border_width_top = 4
 border_width_right = 4
 border_width_bottom = 4
-border_color = Color(0.50140685, 0.5014064, 0.5014066, 1)
+border_color = Color(0.3372549, 0.3372549, 0.3372549, 1)
 border_blend = true
 corner_radius_top_left = 5
 corner_radius_top_right = 5

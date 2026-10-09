@@ -9,6 +9,7 @@ extends CharacterBody2D
 @export var player_id = 0
 
 var last_pos = position
+var latency_helper = 0.3
 
 var adjust_text = false
 
@@ -37,7 +38,7 @@ func _physics_process(delta: float) -> void:
 	if not adjust_text:
 		adjust_text
 		usr_label.position.x = -usr_label.size.x/2
-	
+
 	var direction = position-last_pos
 	direction = direction.clamp(Vector2(-1, -1), Vector2(1, 1))
 	if direction and not teleporting and not Global.is_typing:
@@ -51,8 +52,11 @@ func _physics_process(delta: float) -> void:
 			tween.tween_property(sprite,"scale",Vector2(-5,5),0.1)
 		
 	else:
-		velocity = Vector2.ZERO
-		sprite.play("idle"+str(charIdx))
+		if latency_helper<=0:
+			velocity = Vector2.ZERO
+			sprite.play("idle"+str(charIdx))
+			latency_helper = 0.3
+	latency_helper-=delta
 	last_pos=position
 
 

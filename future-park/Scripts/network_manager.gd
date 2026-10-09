@@ -2,7 +2,7 @@ extends Node2D
 
 signal connected
 
-var url = "ws://localhost:8080"
+var url = "ws://jacob.hidencloud.com:24652"
 
 @onready var oplrs: Node2D = $world/oplrs
 @onready var main_player: CharacterBody2D = $world/oplrs/mainPlayer

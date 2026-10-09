@@ -13,6 +13,7 @@
 [ext_resource type="Script" uid="uid://dg2m4gp0frlel" path="res://Scripts/camera.gd" id="11_848r5"]
 [ext_resource type="Script" uid="uid://buwwks1r3seym" path="res://Scripts/oplrs.gd" id="12_jjai4"]
 [ext_resource type="Script" uid="uid://clyg3tr4ah6o2" path="res://Scripts/canvas_layer.gd" id="12_pkgvh"]
+[ext_resource type="Script" uid="uid://dh6viuooju18w" path="res://Scripts/npc.gd" id="14_t7s13"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8xold"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -102,6 +103,29 @@ animations = [{
 radius = 17.70491
 height = 40.65573
 
+[sub_resource type="LabelSettings" id="LabelSettings_8xold"]
+font_size = 30
+font_color = Color(0.32302538, 0.50412244, 1, 1)
+outline_size = 10
+outline_color = Color(0.13380584, 0.41591, 0.44043422, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lddgv"]
+bg_color = Color(0.10980392, 0.10980392, 0.10980392, 0.39607844)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.10980392, 0.10980392, 0.10980392, 0.39607844)
+border_blend = true
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_color = Color(0, 0, 0, 0)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8xold"]
+radius = 44.011364
+
 [node name="system" type="Node2D" unique_id=30992338]
 script = ExtResource("1_ibywg")
 
@@ -115,6 +139,15 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_dt112")
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/home" unique_id=783501386]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.34062976, 0.46181363, 0.38150612, 1)
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/home" unique_id=1264347346]
 layout_mode = 1
@@ -215,7 +248,10 @@ text = "Apply"
 [node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/home/MarginContainer/HBoxContainer/VBoxContainer2" unique_id=1432465169]
 layout_mode = 2
 text = "Future Park is a smol mmo where you move around, chat with people and teleport to places. right now its still very early in development but alot has been ut into it.
-Use arrows or wasd to move. c to open chat"
+Use arrows or wasd to move. c to open chat
+And ESC to exit chat
+[This project is still in its early stage]
+ENJOY!!"
 fit_content = true
 horizontal_alignment = 1
 
@@ -390,6 +426,77 @@ theme_override_font_sizes/font_size = 12
 script = ExtResource("12_jjai4")
 
 [node name="mainPlayer" parent="world/oplrs" unique_id=1126898047 instance=ExtResource("10_ppvi3")]
+
+[node name="npc1" type="Area2D" parent="world/oplrs" unique_id=1201805615]
+position = Vector2(400, 28.16)
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("14_t7s13")
+
+[node name="Label" type="Label" parent="world/oplrs/npc1" unique_id=2065916260]
+anchors_preset = -1
+offset_left = -19.75
+offset_top = -117.0
+offset_right = 25.25
+offset_bottom = -90.0
+text = "NPC"
+label_settings = SubResource("LabelSettings_8xold")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="world/oplrs/npc1" unique_id=991070327]
+position = Vector2(0, -44.734997)
+scale = Vector2(5, 5)
+sprite_frames = ExtResource("1_uq2cn")
+animation = &"idle4"
+flip_h = true
+
+[node name="txt" type="RichTextLabel" parent="world/oplrs/npc1" unique_id=59836578]
+visible = false
+offset_left = 44.0
+offset_top = -66.0
+offset_right = 281.0
+offset_bottom = 68.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_lddgv")
+text = "Dont mind me. I'm just an NPC. Isnt this game cool? even though its pretty empty for now... Abubazar is working on making a full park tho!"
+fit_content = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="world/oplrs/npc1" unique_id=1004556582]
+position = Vector2(0, -35.735)
+shape = SubResource("CircleShape2D_8xold")
+
+[node name="npc2" type="Area2D" parent="world/oplrs" unique_id=1513483548]
+position = Vector2(70, 500)
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("14_t7s13")
+
+[node name="Label" type="Label" parent="world/oplrs/npc2" unique_id=787458691]
+anchors_preset = -1
+offset_left = -19.75
+offset_top = -117.0
+offset_right = 25.25
+offset_bottom = -90.0
+text = "NPC"
+label_settings = SubResource("LabelSettings_8xold")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="world/oplrs/npc2" unique_id=725264188]
+position = Vector2(0, -44.734997)
+scale = Vector2(5, 5)
+sprite_frames = ExtResource("1_uq2cn")
+animation = &"idle3"
+
+[node name="txt" type="RichTextLabel" parent="world/oplrs/npc2" unique_id=1880226724]
+visible = false
+offset_left = -277.0
+offset_top = -126.0
+offset_right = -40.0
+offset_bottom = 44.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_lddgv")
+text = "This is a portal. Theres 2 here. You can use it to teleport around. You and your friend should stay on opposite portals and one of you should teleport. something cool happens!"
+fit_content = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="world/oplrs/npc2" unique_id=1329712838]
+position = Vector2(0, -35.735)
+shape = SubResource("CircleShape2D_8xold")
 
 [connection signal="pressed" from="CanvasLayer/home/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/prev_btn" to="CanvasLayer/home" method="_on_prev_btn_pressed"]
 [connection signal="pressed" from="CanvasLayer/home/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/next_btn" to="CanvasLayer/home" method="_on_next_btn_pressed"]
