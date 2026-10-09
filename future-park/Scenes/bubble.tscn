@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://tpmkiwq8btr0"]
+
+[ext_resource type="Script" uid="uid://bauiqm4mpplwa" path="res://Scripts/bubble.gd" id="1_fu76k"]
+
+[node name="bubble" type="RichTextLabel" unique_id=1076667241]
+custom_minimum_size = Vector2(50, 0)
+custom_maximum_size = Vector2(300, -1)
+anchors_preset = -1
+offset_left = -25.0
+offset_top = -164.0
+offset_right = 25.0
+offset_bottom = -124.0
+pivot_offset_ratio = Vector2(0.5, 1)
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+script = ExtResource("1_fu76k")
+
+[node name="Timer" type="Timer" parent="." unique_id=1735951108]
+wait_time = 5.0
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

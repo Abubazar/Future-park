@@ -1,11 +1,113 @@
 [gd_scene format=3 uid="uid://blnc1y1846l26"]
 
 [ext_resource type="Script" uid="uid://bgva4y400y8uw" path="res://Scripts/home.gd" id="1_dt112"]
+[ext_resource type="Script" uid="uid://c45ealfgp4y62" path="res://Scripts/network_manager.gd" id="1_ibywg"]
 [ext_resource type="SpriteFrames" uid="uid://bttvt1xokv1cm" path="res://Assets/spriteframes.tres" id="1_uq2cn"]
+[ext_resource type="Texture2D" uid="uid://rvq7ji560rh3" path="res://Assets/map.png" id="4_gyiet"]
+[ext_resource type="Script" uid="uid://d180p0vi51aiv" path="res://Scripts/portal_1.gd" id="5_jjai4"]
+[ext_resource type="Texture2D" uid="uid://d00n6n4q8h27x" path="res://Assets/TP v2.png" id="6_t7s13"]
+[ext_resource type="Texture2D" uid="uid://cpvobr24oacq8" path="res://Assets/TP v3.png" id="7_lddgv"]
+[ext_resource type="Theme" uid="uid://ibv4s7ew124a" path="res://Assets/theme.tres" id="8_smgrs"]
+[ext_resource type="Script" uid="uid://bxju8gbphy1wq" path="res://Scripts/portal_2.gd" id="9_dyher"]
+[ext_resource type="PackedScene" uid="uid://cdvxkpq4fp2li" path="res://Scenes/player.tscn" id="10_ppvi3"]
+[ext_resource type="Script" uid="uid://dg2m4gp0frlel" path="res://Scripts/camera.gd" id="11_848r5"]
+[ext_resource type="Script" uid="uid://buwwks1r3seym" path="res://Scripts/oplrs.gd" id="12_jjai4"]
+[ext_resource type="Script" uid="uid://clyg3tr4ah6o2" path="res://Scripts/canvas_layer.gd" id="12_pkgvh"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8xold"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [sub_resource type="Theme" id="Theme_8xold"]
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_8xold")
 
-[node name="home" type="Control" unique_id=1545335500]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_obyia"]
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_obyia"]
+size = Vector2(131, 103)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5a7ea"]
+size = Vector2(23.5, 199.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8j60k"]
+size = Vector2(300, 71.75)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fo5ed"]
+size = Vector2(131, 142.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5ukr8"]
+size = Vector2(238.5, 38.25)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o06y3"]
+size = Vector2(35, 258)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k7acu"]
+size = Vector2(185.5, 169)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8xold"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_t7s13")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_lddgv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_t7s13")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_lddgv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_t7s13")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_lddgv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_t7s13")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_lddgv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_t7s13")
+}],
+"loop": 0,
+"name": &"active",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_lddgv")
+}],
+"loop": 0,
+"name": &"detect",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_t7s13")
+}],
+"loop": 0,
+"name": &"idle",
+"speed": 1.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8xold"]
+radius = 17.70491
+height = 40.65573
+
+[node name="system" type="Node2D" unique_id=30992338]
+script = ExtResource("1_ibywg")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1406010838]
+
+[node name="home" type="Control" parent="CanvasLayer" unique_id=1545335500]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -14,7 +116,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_dt112")
 
-[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1264347346]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/home" unique_id=1264347346]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -32,26 +134,26 @@ theme_override_constants/margin_top = 30
 theme_override_constants/margin_right = 30
 theme_override_constants/margin_bottom = 30
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=551094534]
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/home/MarginContainer" unique_id=551094534]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer" unique_id=1488868803]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/home/MarginContainer/HBoxContainer" unique_id=1488868803]
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="ColorRect" type="ColorRect" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=343623759]
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/home/MarginContainer/HBoxContainer/VBoxContainer" unique_id=343623759]
 custom_minimum_size = Vector2(300, 300)
 layout_mode = 2
 color = Color(0, 0, 0, 0.14509805)
 
-[node name="sprite" type="AnimatedSprite2D" parent="MarginContainer/HBoxContainer/VBoxContainer/ColorRect" unique_id=204090956]
+[node name="sprite" type="AnimatedSprite2D" parent="CanvasLayer/home/MarginContainer/HBoxContainer/VBoxContainer/ColorRect" unique_id=204090956]
 position = Vector2(151, 192)
 scale = Vector2(8, 8)
 sprite_frames = ExtResource("1_uq2cn")
 animation = &"idle1"
 
-[node name="username" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/ColorRect" unique_id=1697256658]
+[node name="username" type="Label" parent="CanvasLayer/home/MarginContainer/HBoxContainer/VBoxContainer/ColorRect" unique_id=1697256658]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -69,7 +171,7 @@ text = "my name is abu"
 horizontal_alignment = 1
 clip_text = true
 
-[node name="info" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/ColorRect" unique_id=334479869]
+[node name="info" type="Label" parent="CanvasLayer/home/MarginContainer/HBoxContainer/VBoxContainer/ColorRect" unique_id=334479869]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -81,47 +183,220 @@ grow_horizontal = 2
 theme_override_font_sizes/font_size = 25
 text = "Dino Person"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=1641703550]
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/home/MarginContainer/HBoxContainer/VBoxContainer" unique_id=1641703550]
 layout_mode = 2
 theme_override_constants/separation = 70
 alignment = 1
 
-[node name="prev_btn" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer" unique_id=832717594]
+[node name="prev_btn" type="Button" parent="CanvasLayer/home/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer" unique_id=832717594]
 layout_mode = 2
 text = "Prev"
 
-[node name="next_btn" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer" unique_id=2119762479]
+[node name="next_btn" type="Button" parent="CanvasLayer/home/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer" unique_id=2119762479]
 layout_mode = 2
 theme = SubResource("Theme_8xold")
 text = "Next"
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/HBoxContainer" unique_id=794041481]
+[node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer/home/MarginContainer/HBoxContainer" unique_id=794041481]
 layout_mode = 2
 theme_override_constants/separation = 10
 alignment = 1
 
-[node name="usr_edit" type="LineEdit" parent="MarginContainer/HBoxContainer/VBoxContainer2" unique_id=1513283994]
+[node name="usr_edit" type="LineEdit" parent="CanvasLayer/home/MarginContainer/HBoxContainer/VBoxContainer2" unique_id=1513283994]
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 placeholder_text = "Cool Username"
 max_length = 20
 
-[node name="apply_btn" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer2" unique_id=457665672]
+[node name="apply_btn" type="Button" parent="CanvasLayer/home/MarginContainer/HBoxContainer/VBoxContainer2" unique_id=457665672]
 layout_mode = 2
 text = "Apply"
 
-[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/HBoxContainer/VBoxContainer2" unique_id=1432465169]
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/home/MarginContainer/HBoxContainer/VBoxContainer2" unique_id=1432465169]
 layout_mode = 2
 text = "Future Park is a smol mmo where you move around, chat with people and teleport to places. right now its still very early in development but alot has been ut into it.
 Use arrows or wasd to move. c to open chat"
 fit_content = true
 horizontal_alignment = 1
 
-[node name="play_btn" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer2" unique_id=1673479058]
+[node name="play_btn" type="Button" parent="CanvasLayer/home/MarginContainer/HBoxContainer/VBoxContainer2" unique_id=1673479058]
 layout_mode = 2
 text = "Play"
 
-[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/prev_btn" to="." method="_on_prev_btn_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/next_btn" to="." method="_on_next_btn_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer2/apply_btn" to="." method="_on_apply_btn_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer2/play_btn" to="." method="_on_play_btn_pressed"]
+[node name="load" type="PanelContainer" parent="CanvasLayer" unique_id=34997656]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -107.0
+offset_top = -36.5
+offset_right = 107.0
+offset_bottom = 36.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_obyia")
+
+[node name="Label" type="Label" parent="CanvasLayer/load" unique_id=639636462]
+layout_mode = 2
+theme_override_font_sizes/font_size = 60
+text = "Loading"
+
+[node name="world" type="Node2D" parent="." unique_id=1996505548]
+visible = false
+
+[node name="ground" type="StaticBody2D" parent="world" unique_id=1953332313]
+scale = Vector2(4, 4)
+
+[node name="ColorRect" type="ColorRect" parent="world/ground" unique_id=836489433]
+offset_left = -521.75
+offset_top = -421.75
+offset_right = 633.75
+offset_bottom = 341.5
+color = Color(0.58431375, 0.8509804, 0.50980395, 1)
+
+[node name="Map" type="Sprite2D" parent="world/ground" unique_id=857846926]
+texture = ExtResource("4_gyiet")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="world/ground" unique_id=1858949599]
+position = Vector2(-197, 38)
+shape = SubResource("RectangleShape2D_obyia")
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="world/ground" unique_id=1384895607]
+position = Vector2(-238, -97)
+shape = SubResource("RectangleShape2D_5a7ea")
+
+[node name="CollisionShape2D7" type="CollisionShape2D" parent="world/ground" unique_id=824491161]
+position = Vector2(-93, -221)
+shape = SubResource("RectangleShape2D_8j60k")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="world/ground" unique_id=1205882780]
+position = Vector2(-68.5, 137.75)
+shape = SubResource("RectangleShape2D_fo5ed")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="world/ground" unique_id=301457843]
+position = Vector2(107.75, 212.875)
+shape = SubResource("RectangleShape2D_5ukr8")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="world/ground" unique_id=2097919667]
+position = Vector2(244.5, 95)
+shape = SubResource("RectangleShape2D_o06y3")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="world/ground" unique_id=1538455642]
+position = Vector2(144, -110.5)
+shape = SubResource("RectangleShape2D_k7acu")
+
+[node name="portal1" type="Area2D" parent="world" unique_id=2109689652]
+position = Vector2(300, 550)
+scale = Vector2(1.525, 1.525)
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("5_jjai4")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="world/portal1" unique_id=294776385]
+sprite_frames = SubResource("SpriteFrames_8xold")
+animation = &"active"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="world/portal1" unique_id=314396300]
+position = Vector2(-2.622951, -1.9672133)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_8xold")
+
+[node name="info" type="Label" parent="world/portal1" unique_id=457834941]
+anchors_preset = -1
+offset_left = -57.049175
+offset_top = 81.31148
+offset_right = 47.950825
+offset_bottom = 104.31148
+theme = ExtResource("8_smgrs")
+text = "T to teleport"
+
+[node name="portal2" type="Area2D" parent="world" unique_id=1248659903]
+position = Vector2(-400, -250)
+scale = Vector2(1.525, 1.525)
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("9_dyher")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="world/portal2" unique_id=1068352760]
+sprite_frames = SubResource("SpriteFrames_8xold")
+animation = &"active"
+autoplay = "active"
+frame = 8
+frame_progress = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="world/portal2" unique_id=1040495190]
+position = Vector2(-2.622951, -1.9672133)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_8xold")
+
+[node name="info" type="Label" parent="world/portal2" unique_id=601625488]
+anchors_preset = -1
+offset_left = -57.049175
+offset_top = 81.31148
+offset_right = 47.950825
+offset_bottom = 104.31148
+theme = ExtResource("8_smgrs")
+text = "T to teleport"
+
+[node name="Camera" type="Camera2D" parent="world" unique_id=1618545533 node_paths=PackedStringArray("target")]
+script = ExtResource("11_848r5")
+target = NodePath("../oplrs/mainPlayer")
+
+[node name="chat_layout" type="CanvasLayer" parent="world/Camera" unique_id=1870940969]
+visible = false
+script = ExtResource("12_pkgvh")
+
+[node name="LineEdit" type="LineEdit" parent="world/Camera/chat_layout" unique_id=1773800887]
+custom_minimum_size = Vector2(110, 0)
+custom_maximum_size = Vector2(950, -1)
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 79.0
+offset_top = -46.0
+offset_right = 189.0
+offset_bottom = -20.0
+grow_vertical = 0
+placeholder_text = "Message"
+keep_editing_on_text_submit = true
+expand_to_text_length = true
+
+[node name="Button" type="Button" parent="world/Camera/chat_layout" unique_id=1864719165]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = -48.0
+offset_right = 76.0
+offset_bottom = -18.0
+grow_vertical = 0
+text = "SEND"
+
+[node name="ItemList" type="ItemList" parent="world/Camera/chat_layout" unique_id=451717003]
+unique_name_in_owner = true
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 24.0
+offset_top = -211.0
+offset_right = 238.0
+offset_bottom = -67.0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 12
+
+[node name="oplrs" type="Node2D" parent="world" unique_id=1627085827]
+script = ExtResource("12_jjai4")
+
+[node name="mainPlayer" parent="world/oplrs" unique_id=1126898047 instance=ExtResource("10_ppvi3")]
+
+[connection signal="pressed" from="CanvasLayer/home/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/prev_btn" to="CanvasLayer/home" method="_on_prev_btn_pressed"]
+[connection signal="pressed" from="CanvasLayer/home/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/next_btn" to="CanvasLayer/home" method="_on_next_btn_pressed"]
+[connection signal="pressed" from="CanvasLayer/home/MarginContainer/HBoxContainer/VBoxContainer2/apply_btn" to="CanvasLayer/home" method="_on_apply_btn_pressed"]
+[connection signal="pressed" from="CanvasLayer/home/MarginContainer/HBoxContainer/VBoxContainer2/play_btn" to="CanvasLayer/home" method="_on_play_btn_pressed"]
+[connection signal="animation_finished" from="world/portal1/AnimatedSprite2D" to="world/portal1" method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="animation_finished" from="world/portal2/AnimatedSprite2D" to="world/portal2" method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="editing_toggled" from="world/Camera/chat_layout/LineEdit" to="world/Camera/chat_layout" method="_on_line_edit_editing_toggled"]
+[connection signal="text_submitted" from="world/Camera/chat_layout/LineEdit" to="world/Camera/chat_layout" method="_on_line_edit_text_submitted"]
+[connection signal="pressed" from="world/Camera/chat_layout/Button" to="world/Camera/chat_layout" method="_on_button_pressed"]

@@ -7,6 +7,7 @@
 radius = 7.071068
 
 [node name="CharacterBody2D" type="CharacterBody2D" unique_id=1126898047]
+collision_layer = 2
 motion_mode = 1
 script = ExtResource("1_cvnsp")
 
@@ -20,3 +21,15 @@ animation = &"walk4"
 position = Vector2(0, -36.999996)
 scale = Vector2(5, 5)
 shape = SubResource("CircleShape2D_7dp3o")
+
+[node name="usrname" type="Label" parent="." unique_id=1516389167]
+custom_minimum_size = Vector2(20, 0)
+custom_maximum_size = Vector2(200, -1)
+anchors_preset = -1
+offset_left = -13.0
+offset_top = -103.0
+offset_right = 14.0
+offset_bottom = -86.0
+theme_override_constants/outline_size = 12
+text = "pap"
+horizontal_alignment = 1

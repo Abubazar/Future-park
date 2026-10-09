@@ -21,6 +21,7 @@ func _process(delta: float) -> void:
 	
 	if Input.is_action_just_pressed("tele"):
 		if player:
+			player.teleporting = true
 			var tween = create_tween()
 			tween.parallel()
 			tween.tween_property(player,"position",position,0.2)
@@ -43,6 +44,7 @@ func touching_player(bodies):
 func _on_animated_sprite_2d_animation_finished() -> void:
 	if teleporting:
 		player.position = portal1.position
+		player.teleporting = false
 		var tween = create_tween()
 		tween.tween_property(player,"modulate",Color(1.0, 1.0, 1.0),0.6)
 		teleporting = false

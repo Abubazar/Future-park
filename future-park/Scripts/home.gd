@@ -2,11 +2,9 @@ extends Control
 
 @onready var sprite: AnimatedSprite2D = $MarginContainer/HBoxContainer/VBoxContainer/ColorRect/sprite
 @onready var username: Label = $MarginContainer/HBoxContainer/VBoxContainer/ColorRect/username
-@onready var prev_btn: Button = $MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/prev_btn
-@onready var next_btn: Button = $MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/next_btn
 @onready var usr_edit: LineEdit = $MarginContainer/HBoxContainer/VBoxContainer2/usr_edit
-@onready var apply_btn: Button = $MarginContainer/HBoxContainer/VBoxContainer2/apply_btn
-@onready var play_btn: Button = $MarginContainer/HBoxContainer/VBoxContainer2/play_btn
+@onready var world: Node2D = $"../../world"
+@onready var system: Node2D = $"../.."
 
 var charIdx = 1
 
@@ -37,5 +35,6 @@ func _on_apply_btn_pressed() -> void:
 
 
 func _on_play_btn_pressed() -> void:
-	#hide()
+	system.connect_to_server()
+	$"../load".show()
 	Global.save_data()

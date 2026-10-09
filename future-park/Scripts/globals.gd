@@ -5,6 +5,9 @@ var save_path = "user://data.save"
 var usrname:String = "Rawwr"
 var char:int = 1
 
+
+var is_typing = false
+
 func save_data():
 	var file = FileAccess.open(save_path,FileAccess.WRITE)
 	file.store_var(usrname)

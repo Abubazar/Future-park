@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://cpvobr24oacq8" path="res://Assets/TP v3.png" id="5_o06y3"]
 [ext_resource type="Script" uid="uid://bxju8gbphy1wq" path="res://Scripts/portal_2.gd" id="6_k7acu"]
 [ext_resource type="Script" uid="uid://dg2m4gp0frlel" path="res://Scripts/camera.gd" id="7_o06y3"]
+[ext_resource type="Script" uid="uid://clyg3tr4ah6o2" path="res://Scripts/canvas_layer.gd" id="9_5v1tr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_obyia"]
 size = Vector2(131, 103)
@@ -152,6 +153,7 @@ theme = ExtResource("5_5ukr8")
 text = "T to teleport"
 
 [node name="portal2" type="Area2D" parent="." unique_id=1248659903]
+position = Vector2(-400, -250)
 scale = Vector2(1.525, 1.525)
 script = ExtResource("6_k7acu")
 
@@ -184,5 +186,48 @@ position = Vector2(599, 333)
 script = ExtResource("7_o06y3")
 target = NodePath("../mainPlayer")
 
+[node name="CanvasLayer" type="CanvasLayer" parent="Camera" unique_id=1870940969]
+script = ExtResource("9_5v1tr")
+
+[node name="LineEdit" type="LineEdit" parent="Camera/CanvasLayer" unique_id=1773800887]
+custom_minimum_size = Vector2(110, 0)
+custom_maximum_size = Vector2(950, -1)
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 79.0
+offset_top = -46.0
+offset_right = 189.0
+offset_bottom = -20.0
+grow_vertical = 0
+placeholder_text = "Message"
+keep_editing_on_text_submit = true
+expand_to_text_length = true
+
+[node name="Button" type="Button" parent="Camera/CanvasLayer" unique_id=1864719165]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = -48.0
+offset_right = 76.0
+offset_bottom = -18.0
+grow_vertical = 0
+text = "SEND"
+
+[node name="ItemList" type="ItemList" parent="Camera/CanvasLayer" unique_id=451717003]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 24.0
+offset_top = -211.0
+offset_right = 238.0
+offset_bottom = -67.0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 12
+
 [connection signal="animation_finished" from="portal1/AnimatedSprite2D" to="portal1" method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="animation_finished" from="portal2/AnimatedSprite2D" to="portal2" method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="editing_toggled" from="Camera/CanvasLayer/LineEdit" to="Camera/CanvasLayer" method="_on_line_edit_editing_toggled"]
+[connection signal="text_submitted" from="Camera/CanvasLayer/LineEdit" to="Camera/CanvasLayer" method="_on_line_edit_text_submitted"]
+[connection signal="pressed" from="Camera/CanvasLayer/Button" to="Camera/CanvasLayer" method="_on_button_pressed"]

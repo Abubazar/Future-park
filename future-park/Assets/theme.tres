@@ -2,6 +2,25 @@
 
 [ext_resource type="FontFile" uid="uid://cah0yh7alwul1" path="res://Assets/editundo.ttf" id="1_0dftj"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_obyia"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ik584"]
+bg_color = Color(0.1750271, 0.68751127, 0.6239543, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uhy15"]
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.50140685, 0.5014064, 0.5014066, 1)
+border_blend = true
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_color = Color(0, 0, 0, 0)
+
 [resource]
 Button/colors/icon_normal_color = Color(1, 1, 1, 1)
 Button/font_sizes/font_size = 24
@@ -10,5 +29,8 @@ Label/font_sizes/font_size = 18
 Label/fonts/font = ExtResource("1_0dftj")
 LineEdit/font_sizes/font_size = 20
 LineEdit/fonts/font = ExtResource("1_0dftj")
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_obyia")
 RichTextLabel/font_sizes/normal_font_size = 20
 RichTextLabel/fonts/normal_font = ExtResource("1_0dftj")
+RichTextLabel/styles/background = SubResource("StyleBoxFlat_ik584")
+RichTextLabel/styles/normal = SubResource("StyleBoxFlat_uhy15")
