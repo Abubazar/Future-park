@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://d00n6n4q8h27x" path="res://Assets/TP v2.png" id="4_5ukr8"]
 [ext_resource type="Theme" uid="uid://ibv4s7ew124a" path="res://Assets/theme.tres" id="5_5ukr8"]
 [ext_resource type="Texture2D" uid="uid://cpvobr24oacq8" path="res://Assets/TP v3.png" id="5_o06y3"]
+[ext_resource type="Script" uid="uid://bxju8gbphy1wq" path="res://Scripts/portal_2.gd" id="6_k7acu"]
+[ext_resource type="Script" uid="uid://dg2m4gp0frlel" path="res://Scripts/camera.gd" id="7_o06y3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_obyia"]
 size = Vector2(131, 103)
@@ -80,10 +82,10 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8xold"]
-radius = 44.0
-height = 130.00003
+radius = 17.70491
+height = 40.65573
 
-[node name="Node2D" type="Node2D" unique_id=1996505548]
+[node name="world" type="Node2D" unique_id=1996505548]
 
 [node name="ground" type="StaticBody2D" parent="." unique_id=1953332313]
 scale = Vector2(4, 4)
@@ -127,30 +129,60 @@ position = Vector2(144, -110.5)
 shape = SubResource("RectangleShape2D_k7acu")
 
 [node name="portal1" type="Area2D" parent="." unique_id=2109689652]
-position = Vector2(-200, -200)
+position = Vector2(300, 550)
 scale = Vector2(1.525, 1.525)
 script = ExtResource("3_fo5ed")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="portal1" unique_id=294776385]
-position = Vector2(287, 511)
 sprite_frames = SubResource("SpriteFrames_8xold")
-animation = &"detect"
+animation = &"active"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="portal1" unique_id=314396300]
-position = Vector2(285, 506)
+position = Vector2(-2.622951, -1.9672133)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_8xold")
 
 [node name="info" type="Label" parent="portal1" unique_id=457834941]
 anchors_preset = -1
-offset_left = 229.0
-offset_top = 589.0
-offset_right = 334.0
-offset_bottom = 612.0
+offset_left = -57.049175
+offset_top = 81.31148
+offset_right = 47.950825
+offset_bottom = 104.31148
 theme = ExtResource("5_5ukr8")
 text = "T to teleport"
 
-[node name="CharacterBody2D" parent="." unique_id=1126898047 instance=ExtResource("1_a02cp")]
+[node name="portal2" type="Area2D" parent="." unique_id=1248659903]
+scale = Vector2(1.525, 1.525)
+script = ExtResource("6_k7acu")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="portal2" unique_id=1068352760]
+sprite_frames = SubResource("SpriteFrames_8xold")
+animation = &"active"
+autoplay = "active"
+frame = 8
+frame_progress = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="portal2" unique_id=1040495190]
+position = Vector2(-2.622951, -1.9672133)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_8xold")
+
+[node name="info" type="Label" parent="portal2" unique_id=601625488]
+anchors_preset = -1
+offset_left = -57.049175
+offset_top = 81.31148
+offset_right = 47.950825
+offset_bottom = 104.31148
+theme = ExtResource("5_5ukr8")
+text = "T to teleport"
+
+[node name="mainPlayer" parent="." unique_id=1126898047 instance=ExtResource("1_a02cp")]
 position = Vector2(599, 333)
 
-[node name="Camera2D" type="Camera2D" parent="CharacterBody2D" unique_id=1618545533]
+[node name="Camera" type="Camera2D" parent="." unique_id=1618545533 node_paths=PackedStringArray("target")]
+position = Vector2(599, 333)
+script = ExtResource("7_o06y3")
+target = NodePath("../mainPlayer")
+
+[connection signal="animation_finished" from="portal1/AnimatedSprite2D" to="portal1" method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="animation_finished" from="portal2/AnimatedSprite2D" to="portal2" method="_on_animated_sprite_2d_animation_finished"]
